@@ -14,11 +14,11 @@ def sample_conf_read(out):
     sample_conf = {}
     with open(out) as lines:
         for line in lines:
-            config = re.sub("[\s\n\t]", "", line)
+            config = re.sub(r"[\s\n\t]", "", line)
             if config.startswith('#'):
                 continue 
             if config.startswith('['):
-                mode = re.search("(?<=\[)(.+?)(?=\])",config).group()
+                mode = re.search(r"(?<=\[)(.+?)(?=\])",config).group()
                 if mode == "fastq":
                     sample_conf[mode] = {}
                 else:
